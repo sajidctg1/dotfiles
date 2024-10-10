@@ -1,0 +1,150 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$cmd_duration\
+$fill\
+$python\
+$lua\
+$nodejs\
+$php\
+$golang\
+$haskell\
+$rust\
+$ruby\
+$package\
+$aws\
+$docker_context\
+$jobs\
+$time\
+$line_break\
+$character"""
+
+add_newline = true
+palette = 'catppuccin_mocha'
+
+[directory]
+format = '[$path ](sky)'
+truncation_length = 3
+truncation_symbol = '…/'
+truncate_to_repo = false
+
+[directory.substitutions]
+'Documents' = '󰈙'
+'Downloads' = ' '
+'Music' = ' '
+'Pictures' = ' '
+"code" = "󰲋 "
+
+[git_branch]
+symbol = ' '
+format = '[on](white) [$symbol$branch ](green)'
+
+[git_status]
+format = '([$all_status$ahead_behind](pink) )'
+
+[fill]
+symbol = ' '
+
+[cmd_duration]
+min_time = 500
+format = '[took $duration](peach)'
+
+[time]
+disabled = false
+time_format = "%R"
+format = '[   $time](yellow)'
+
+[python]
+style = 'teal'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[lua]
+style = 'teal'
+symbol = ' '
+
+[php]
+style = "teal"
+symbol = " "
+
+[nodejs]
+style = 'teal'
+symbol = ' '
+
+[golang]
+style = 'teal'
+symbol = ' '
+
+[haskell]
+style = 'teal'
+symbol = ' '
+
+[rust]
+style = 'teal'
+symbol = ' '
+
+[ruby]
+style = 'teal'
+symbol = ' '
+
+[package]
+style = 'teal'
+symbol = '󰏗 '
+
+[aws]
+style = 'yellow'
+symbol = ' '
+format = '[$symbol($profile )(\[$duration\] )]($style)'
+
+[docker_context]
+symbol = ' '
+style = 'fg:#06969A'
+format = '[$symbol]($style) $path'
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+detect_extensions = ['Dockerfile']
+
+# [kubernetes]
+# symbol = '☸ '
+# disabled = true
+# detect_files = ['Dockerfile']
+# format = '[$symbol$context( \($namespace\))]($style) '
+
+[jobs]
+symbol = ' '
+style = 'red'
+number_threshold = 1
+format = '[$symbol]($style)'
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+orange = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+ 

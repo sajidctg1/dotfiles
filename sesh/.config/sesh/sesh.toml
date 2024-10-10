@@ -1,0 +1,45 @@
+[default_session]
+startup_command = "nvim -c ':Telescope find_files'"
+
+[[session]]
+name = "Home 🏡"
+path = "~"
+startup_command = "l"
+
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "ls"
+
+[[session]]
+name = "Code  "
+path = "~/code"
+startup_command = "l"
+
+[[session]]
+name = "Dotfiles 󰘓"
+path = "~/dotfiles"
+startup_command = "nvim"
+
+[[session]]
+name = "My binaries"
+path = "~/dotfiles/.local/bin"
+
+[[session]]
+name = "Kitty config "
+path = "~/.config/kitty"
+startup_command = "nvim kitty.conf"
+
+[[session]]
+name = "Tmux config "
+path = "~/.config/tmux"
+startup_command = "nvim tmux.conf"
+
+[[session]]
+name = "Neovim config "
+path = "~/.config/nvim"
+
+[[session]]
+name = "Sesh config "
+path = "~/.config/sesh"
+startup_command = "nvim sesh.toml"

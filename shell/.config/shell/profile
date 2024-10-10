@@ -1,0 +1,23 @@
+#!/bin/sh
+
+typeset -U PATH path
+# unsetopt PROMPT_SP 2>/dev/null
+
+# add all directories in `~/.local/bin` to $PATH
+export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -)"
+export PATH="$PATH:$BUN_INSTALL/bin"
+export PATH="$PATH:/usr/local/go/bin:${GOPATH:-$HOME/.local/share/go}/bin"
+
+# -------------------- default programs --------------------
+export BROWSER="google-chrome"
+export EDITOR="vim"
+export SUDO_EDITOR="vim"
+export TERMINAL="kitty"
+export READER="zathura"
+export VIDEO="mpv"
+export IMAGE="sxiv"
+export TERM="xterm-256color"
+export COLORTERM="truecolor"
+export OPENER="xdg-open"
+# export PAGER="moar"
+
