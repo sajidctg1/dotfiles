@@ -142,7 +142,7 @@ set statusline+=%3*\ %{&fenc!=''?&fenc:&enc}[%{&ff}]\ %*     "Encoding
 set statusline+=%4*\ \ %{strftime('%H:%M')}\ %*                "Time string
 
 "  Colors
-hi User1 guibg=#181825 guifg=#ffffff 
+hi User1 guibg=NONE guifg=#ffffff 
 hi User2 guibg=#fab387 guifg=#000000
 hi User3 guibg=#94e2d5 guifg=#000000
 hi User4 guibg=#89b4fa guifg=#000000
