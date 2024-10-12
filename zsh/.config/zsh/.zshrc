@@ -50,11 +50,11 @@ zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support.
 zstyle ':completion:*:descriptions' format '[%d]'
 # preview directories or file content when completing cat
-zstyle ':fzf-tab:complete:bat:*' fzf-preview '[[ -d "$realpath" ]] && eza -1 --icons=always --color=always --tree --level=2 "$realpath" || bat --color=always "$realpath"'
-zstyle ':fzf-tab:complete:cat:*' fzf-preview '[[ -d "$realpath" ]] && eza -1 --icons=always --color=always --tree --level=2 "$realpath" || bat --color=always "$realpath"'
+zstyle ':fzf-tab:complete:bat:*' fzf-preview '[[ -d "$realpath" ]] && eza -1a --icons=always --color=always --tree --level=2 --ignore-glob=".git|node_modules|.next" "$realpath" || bat --color=always "$realpath"'
+zstyle ':fzf-tab:complete:cat:*' fzf-preview '[[ -d "$realpath" ]] && eza -1a --icons=always --color=always --tree --level=2 --ignore-glob=".git|node_modules|.next" "$realpath" || bat --color=always "$realpath"'
 # preview sub directories with eza when completing cd or zoxide
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --icons=always --color=always --tree --level=2 $realpath'
-zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1 --icons=always --color=always --tree --level=2 $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1a --icons=always --color=always --tree --level=2 --ignore-glob=".git|node_modules" $realpath'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'eza -1a --icons=always --color=always --tree --level=2 --ignore-glob=".git|node_modules" $realpath'
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 # fzf-tab height and width issue fix
@@ -92,16 +92,16 @@ eval "$(fzf --zsh)"
 eval "$(zoxide init zsh)"
 
 # -------------------- fzf config --------------------
-show_file_or_dir_preview="[ -d {} ] && eza --tree --color=always {} | head -200 || bat -n --color=always --line-range :500 {}"
+show_file_or_dir_preview='[ -d {} ] && eza -1a --icons=always --color=always --tree --level=5 --ignore-glob=".git|node_modules|.next" {} | head -200 || bat -n --color=always --line-range :500 {}'
 
-export FZF_DEFAULT_OPTS="--reverse --height 60% --border --prompt '  ' --color=bg:#0a0f0f,prompt:cyan,pointer:cyan,marker:cyan,spinner:cyan"
-export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_DEFAULT_OPTS='--reverse --height 60% --border --prompt "  " --color=bg:#0a0f0f,prompt:cyan,pointer:cyan,marker:cyan,spinner:cyan'
+export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
 # # ctlr-t key options
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 # # alt-c key options
-export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+export FZF_ALT_C_COMMAND='fd --type=d --hidden --strip-cwd-prefix --exclude .git'
+export FZF_ALT_C_OPTS='--preview "eza -1a --icons=always --color=always --tree --level=5 --ignore-glob=\".git|node_modules|.next\" {} | head -200"'
 # export TMUX_TMPDIR=$XDG_RUNTIME_DIR
 
 # -------------------- sesh config --------------------
