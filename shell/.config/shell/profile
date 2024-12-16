@@ -3,10 +3,12 @@
 typeset -U PATH path
 # unsetopt PROMPT_SP 2>/dev/null
 
-# add all directories in `~/.local/bin` to $PATH
+# add all directories in `~/.local/bin/` to $PATH
 export PATH="$PATH:$(find -L ~/.local/bin -type d | paste -sd ':' -)"
-export PATH="$PATH:$BUN_INSTALL/bin"
-export PATH="$PATH:/usr/local/go/bin:${GOPATH:-$HOME/.local/share/go}/bin"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="/usr/local/go/bin:${GOPATH:-$HOME/.local/share/go}/bin:$PATH"
+export PATH="$HOME/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # -------------------- default programs --------------------
 export BROWSER="google-chrome"

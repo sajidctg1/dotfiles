@@ -14,7 +14,11 @@
     # '')
 
     # fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Meslo" "JetBrainsMono" "NerdFontsSymbolsOnly" "SourceCodePro" ]; } )
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.meslo-lg
+    nerd-fonts.sauce-code-pro
+    nerd-fonts.symbols-only
 
     # packages
     bat
@@ -78,31 +82,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  # programs.zsh = {
-  #   enable = true;
-  #   dotDir = ".config/zsh";
-  #   envExtra = builtins.readFile ~/dotfiles/.config/zsh/.zshenv;
-  #   shellAliases = {
-  #     ls = "eza --icons";
-  #     l  = "eza --icons -lgha --git";
-  #     lt = "eza --icons -lha  --git --tree --level=2 --ignore-glob='.git|node_modules|.next'";
-  #     v = "$EDITOR";
-  #   };
-  #   history = {
-  #     size = 5000;
-  #     path = "${config.xdg.dataHome}/zsh/history";
-  #   };
-  #   oh-my-zsh = {
-  #     enable = true;
-  #     plugins = [ "git" "zsh-autosuggestions" "zsh-syntax-highlighting" "fzf-tab" ];
-  #     theme = "agnoster";
-  #     extraConfig = ''
-  #       zstyle ':omz:*' aliases no
-  #
-  #       zstyle ':omz:lib:directories' aliases yes
-  #     '';
-  #     # extraConfig = builtins.readFile ~/dotfiles/.config/zsh/.zshrc;
-  #   };
-  # };
 }
