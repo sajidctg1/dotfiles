@@ -17,7 +17,7 @@ alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ansi"
 alias ip="ip -color=auto"
-alias cat="bat"
+alias cat="batcat"
 
 # -------------------- navigation --------------------
 alias ...='cd ../..'
@@ -42,7 +42,7 @@ alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias chs="tldr --list | fzf --preview 'tldr {1}' | xargs tldr"
-alias fe='fd -t f -H . ~/dotfiles | fzf --preview="bat --color=always {} | head -200" | xargs -or vim'
+alias fe='fdfind -t f -H . ~/dotfiles | fzf --preview="batcat --color=always {} | head -200" | xargs -or vim'
 
 # -------------------- eza (better ls) --------------------
 alias ls="eza --icons -a"
