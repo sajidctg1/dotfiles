@@ -1,0 +1,78 @@
+#!/bin/bash
+
+github_account="https://github.com/sajidctg1"
+
+# ================== install essential packages
+sudo apt install bat btop build-essential fd-find jq kitty python3-pip pipx ripgrep stow tealdeer tmux tmuxp zoxide zsh -y
+
+
+# ================== make required directory 
+mkdir -p ~/.local/bin
+mkdir -p ~/.local/lib
+mkdir -p ~/.config/tmux
+mkdir -p ~/.config/zsh
+
+
+# ================== set zsh as default shell
+chsh -s `which zsh`
+
+
+# ================== install python uv package manager
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# ================== install nodejs using nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# install pnpm package manager
+corepack enable pnpm
+
+# ================== install rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+rustup update
+
+# ================== install go
+install-go
+
+
+# ================== install utility packages
+pipx install commitizen
+cargo install --locked yazi-fm yazi-cli
+cargo install git-delta
+go install github.com/charmbracelet/glow@latest
+go install github.com/joshmedeski/sesh/v2@latest
+go install github.com/jesseduffield/lazygit@latest
+
+
+# ================== install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.local/lib/fzf
+~/.local/lib/fzf/install
+
+# ================== install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+
+# ================== install neovim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+tar -C ~/.local/lib -xzf nvim-linux-x86_64.tar.gz
+# clone nvim repo
+git clone $github_account/kickstart-modular.nvim.git ~/.config/nvim
+
+
+# ================== install nerd fonts
+font-install JetBrainsMono FiraCode Meslo NerdFontsSymbolsOnly
+
+
+# ================== add google chrome source list
+curl -fSsl https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor | sudo tee /usr/share/keyrings/google-chrome.gpg > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+
+# ================== Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update

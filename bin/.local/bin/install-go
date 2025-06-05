@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -e
+
+# Variables
+GO_URL="https://go.dev/dl/"
+INSTALL_DIR="$HOME/.local/lib"
+
+echo "Fetching the latest Go version..."
+
+# Get latest version dynamically
+LATEST_VERSION=$(curl -s https://go.dev/VERSION?m=text)
+GO_ARCHIVE="${LATEST_VERSION}.linux-amd64.tar.gz"
+DOWNLOAD_URL="${GO_URL}${GO_ARCHIVE}"
+
+echo "Latest version: $LATEST_VERSION"
+echo "Downloading $DOWNLOAD_URL..."
+
+# Download the latest Go tarball
+curl -LO "$DOWNLOAD_URL"
+
+# Remove any existing Go installation
+echo "Removing old Go installation (if any)..."
+sudo rm -rf "${INSTALL_DIR}/go"
+
+# Extract and install Go
+echo "Installing Go to ${INSTALL_DIR}/go..."
+sudo tar -C "$INSTALL_DIR" -xzf "$GO_ARCHIVE"
+
+# Clean up archive
+rm "$GO_ARCHIVE"
+
+# Apply changes
+echo "Reloading profile..."
+
+echo "✅ Go $LATEST_VERSION installed successfully!"
+go version
