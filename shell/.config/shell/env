@@ -10,17 +10,18 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:="$HOME/.local/state"}
 export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:="$HOME/picures"}
 
 # -------------------- $HOME dir clean up --------------------
-export BUN_INSTALL="$XDG_DATA_HOME/bun"
-export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export GOPATH=$XDG_DATA_HOME/go
 export GOMODCACHE=$XDG_CACHE_HOME/go/mod
+export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export RIPGREP_CONFIG_PATH=$XDG_CONFIG_HOME/ripgrep/ripgreprc
 export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME"/pass
-export CARGO_HOME=$XDG_DATA_HOME/cargo
+export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java
 
 # -------------------- other program settings --------------------

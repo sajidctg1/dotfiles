@@ -28,6 +28,7 @@ alias .5='cd ../../../../..'
 # -------------------- shortcut aliases --------------------
 # apt
 alias install="sudo apt install"
+alias remove="sudo apt remove"
 alias update="sudo apt update"
 alias upgrade="sudo apt upgrade"
 alias autoremove="sudo apt autoremove"
@@ -36,13 +37,15 @@ alias lt-src="lt /etc/apt/ --level=3"
 # adding flags
 alias df='df -h'
 alias free='free -m'
+# docker
+alias docker="sudo docker"
 # ps
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias psmem='ps auxf | sort -nr -k 4'
 alias pscpu='ps auxf | sort -nr -k 3'
 alias chs="tldr --list | fzf --preview 'tldr {1}' | xargs tldr"
-alias fe='fdfind -t f -H . ~/dotfiles | fzf --preview="batcat --color=always {} | head -200" | xargs -or vim'
+alias cfg='fdfind -t f -H . ~/dotfiles | fzf --preview="batcat --color=always {} | head -200" | xargs -or vim'
 
 # -------------------- eza (better ls) --------------------
 alias ls="eza --icons -a"
@@ -84,7 +87,7 @@ alias gcoall='git checkout -- .'
 alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
 alias gcb='git branch --sort=-committerdate | fzf --header "Checkout Recent Branch" --preview "git diff --color=always {1}" --pointer="" | xargs git checkout'
 
-se() {
+bins() {
   choice="$(find -L ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
   [ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
 }
