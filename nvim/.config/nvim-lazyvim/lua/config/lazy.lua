@@ -38,7 +38,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.typescript" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.yaml" },
-    --
     -- import/override with your plugins
     { import = "plugins" },
   },
@@ -53,7 +52,7 @@ require("lazy").setup({
   },
   install = { colorscheme = { "catppuccin" } },
   checker = {
-    enabled = false, -- check for plugin updates periodically
+    enabled = true, -- check for plugin updates periodically
     notify = false, -- notify on update
   }, -- automatically check for plugin updates
   performance = {

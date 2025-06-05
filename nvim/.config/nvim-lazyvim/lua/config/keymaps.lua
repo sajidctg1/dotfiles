@@ -3,9 +3,6 @@
 -- Add any additional keymaps here
 
 local set = vim.keymap.set
-local del = vim.keymap.del
-
--- Delete LazyVim default bindings
 
 -- add custom keymaps
 set("i", "jj", "<ESC>", { silent = true })

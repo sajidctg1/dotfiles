@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    enabled = false,
     event = "InsertEnter",
     dependencies = {
       "hrsh7th/cmp-buffer",
@@ -128,6 +129,7 @@ return {
   },
   {
     "hrsh7th/cmp-cmdline",
+    enabled = false,
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
