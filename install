@@ -2,15 +2,33 @@
 
 github_account="https://github.com/sajidctg1"
 
-# ================== install essential packages
-sudo apt install bat btop build-essential fd-find jq kitty python3-pip pipx ripgrep stow tealdeer tmux tmuxp zoxide zsh -y
-
-
 # ================== make required directory 
 mkdir -p ~/.local/bin
 mkdir -p ~/.local/lib
 mkdir -p ~/.config/tmux
 mkdir -p ~/.config/zsh
+
+
+# ================== install essential packages
+sudo apt update
+sudo apt upgrade
+sudo apt install bat btop build-essential fd-find gpg jq kitty python3-pip pipx ripgrep stow tealdeer tmux tmuxp zoxide zsh -y
+
+# ================== install eza
+sudo mkdir -p /etc/apt/keyrings
+wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+sudo apt update
+sudo apt install -y eza
+
+# ================== install fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.local/lib/fzf
+~/.local/lib/fzf/install
+
+# ================== install tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+
 
 
 # ================== set zsh as default shell
@@ -20,44 +38,35 @@ chsh -s `which zsh`
 # ================== install python uv package manager
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+# ================== install go
+install-go
+
 # ================== install nodejs using nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 # install pnpm package manager
 corepack enable pnpm
 
 # ================== install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup update
-
-# ================== install go
-install-go
+# curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+# rustup update
 
 
 # ================== install utility packages
 pipx install commitizen
-cargo install --locked yazi-fm yazi-cli
-cargo install git-delta
-go install github.com/charmbracelet/glow@latest
 go install github.com/joshmedeski/sesh/v2@latest
 go install github.com/jesseduffield/lazygit@latest
 
+# ================== install kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
 
-# ================== install fzf
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.local/lib/fzf
-~/.local/lib/fzf/install
-
-# ================== install tmux plugin manager
-git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+# ================== install nerd fonts
+font-install JetBrainsMono FiraCode Meslo NerdFontsSymbolsOnly
 
 # ================== install neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 tar -C ~/.local/lib -xzf nvim-linux-x86_64.tar.gz
 # clone nvim repo
 git clone $github_account/kickstart-modular.nvim.git ~/.config/nvim
-
-
-# ================== install nerd fonts
-font-install JetBrainsMono FiraCode Meslo NerdFontsSymbolsOnly
 
 
 # ================== add google chrome source list
@@ -76,3 +85,4 @@ echo \
   $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
+
