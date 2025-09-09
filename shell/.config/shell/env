@@ -11,6 +11,7 @@ export XDG_PICTURES_DIR=${XDG_PICTURES_DIR:="$HOME/picures"}
 
 # -------------------- $HOME dir clean up --------------------
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export DOTNET_ROOT=$XDG_DATA_HOME/dotnet
 export BUN_INSTALL="$XDG_DATA_HOME/bun"
 export PYTHONSTARTUP=$XDG_CONFIG_HOME/python/pythonrc
 export GOPATH=$XDG_DATA_HOME/go
